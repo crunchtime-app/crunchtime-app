@@ -1,29 +1,21 @@
 import React from 'react';
 import {registerRootComponent} from 'expo';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-// import {StyleSheet, View} from 'react-native';
+import {LandingScreen, FlashCardFlowScreen} from './screens';
 
-import Title from './components/Title';
-import View from './components/View';
-import Panel from './components/Panel';
+const Tab = createBottomTabNavigator();
 
 const App = () => {
-  return (
-    <View>
-      <Panel>
-        <Title>Upcoming tests</Title>
-      </Panel>
-    </View>
-  );
-}
+    return (
+        <NavigationContainer>
+            <Tab.Navigator>
+                <Tab.Screen name="Home" component={LandingScreen} />
+                <Tab.Screen name="Settings" component={FlashCardFlowScreen} />
+            </Tab.Navigator>
+        </NavigationContainer>
+    );
+};
 
 export default registerRootComponent(App);
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
