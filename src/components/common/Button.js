@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import colors from '../resources/colors';
+import colors from '../../resources/colors';
 
 const ButtonContainer = styled.TouchableOpacity`
     min-width: 200px;

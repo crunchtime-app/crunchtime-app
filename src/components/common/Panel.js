@@ -10,13 +10,8 @@ const Panel = styled.View`
     align-items: flex-start;
 	flex-direction: column;
 
-
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-
-    padding: 10px;
-    padding-top: 50px;
-
 `;
 
 export default Panel;
