@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native';
 import colors from '../../resources/colors';
 
 const PageContainer = styled.View`
@@ -20,7 +20,7 @@ const Header = styled.View`
 `;
 
 const Title = styled.Text`
-    color: ${colors.lightGrey};
+    color: ${colors.white};
     opacity: 0.9;
     font-size: 40px;
 `;
@@ -37,14 +37,14 @@ const Body = styled.View`
 
 const Page = ({title, children}) => {
     return (
-        <SafeAreaView style={{flex: 1}}>
+       <SafeAreaView style={{flex: 1, backgroundColor: colors.purple}}>
             <PageContainer>
                 <Header>
                     <Title>{title}</Title>
                 </Header>
                 <Body>{children}</Body>
             </PageContainer>
-        </SafeAreaView>
+       </SafeAreaView>
     );
 };
 

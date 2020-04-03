@@ -29,8 +29,8 @@ const FlashCard = ({card}) => {
 
     return (
         <Container>
-            <FlashCardContainer >
-                <Text style={{fontSize: '30px'}}>
+            <FlashCardContainer onTouchStart={() => setFlipped(!isFlipped)}>
+                <Text style={{fontSize: 36}}>
                     {isFlipped ? card.back : card.front}
                 </Text>
             </FlashCardContainer>
@@ -39,11 +39,11 @@ const FlashCard = ({card}) => {
                 size={50}
                 style={{
                     transform: isFlipped
-                        ? 'scaleX(-1) scaleY(-1)'
-                        : 'scaleY(-1)'
+                        ? [{scaleX: -1}, {scaleY: -1}]
+                        : [{scaleY: -1}]
                 }}
                 color={colors.purple}
-                onClick={() => setFlipped(!isFlipped)}
+                onTouchStart={() => setFlipped(!isFlipped)}
             />
         </Container>
     );

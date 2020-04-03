@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+// import styled from 'styled-components'; 
 import {View} from 'react-native';
 
 import {Title, Page, FlashCard, Button} from '../common';
@@ -30,11 +31,9 @@ const mockCards = [
     }
 ];
 
+
 const FlashCardFlowScreen = ({cards = mockCards, navigation}) => {
     const [currentCard, setCurrentCard] = useState(0);
-
-    console.log('cards.length', cards.length);
-    console.log('currentCard', currentCard);
 
     useEffect(() => {
         if (cards.length === currentCard) {
@@ -43,14 +42,14 @@ const FlashCardFlowScreen = ({cards = mockCards, navigation}) => {
     });
 
     return (
-        <View>
+        <View style={{height: '100%'}}>
             {cards[currentCard] &&
                 <Page title="Test">
                     <Title>
                         {currentCard + 1} of {cards.length}
                     </Title>
                     <FlashCard card={cards[currentCard]} />
-                    <View>
+                    {/* <Plain> */}
                         <Button
                             primary
                             onPress={() =>
@@ -73,10 +72,11 @@ const FlashCardFlowScreen = ({cards = mockCards, navigation}) => {
                                     navigation
                                 )
                             }
+                            text="Mark INCORRECT"
                         >
                             Mark Incorrect
                         </Button>
-                    </View>
+                    {/* </Plain> */}
                 </Page>
             }
         </View>

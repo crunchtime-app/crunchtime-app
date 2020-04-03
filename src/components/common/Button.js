@@ -5,9 +5,9 @@ import colors from '../../resources/colors';
 const ButtonContainer = styled.TouchableOpacity`
     min-width: 200px;
     height: 40px;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 20px;
-    margin: 5px;
+    /* margin: 5px; */
 
     display: flex;
     justify-content: center;

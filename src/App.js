@@ -5,7 +5,6 @@ import {Ionicons} from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {UpcomingTestsScreen, AchievementScreen} from './components/screens';
 import {FlashCardFlowScreen} from './components/modals';
@@ -41,7 +40,7 @@ const UpcomingStackScreen = () => {
 
 const App = () => {
     return (
-        <SafeAreaProvider>
+        // <SafeAreaProvider>
             <NavigationContainer>
                 <Tab.Navigator
                     screenOptions={({route}) => ({
@@ -87,7 +86,7 @@ const App = () => {
                     />
                     <Tab.Screen
                         name={RouteNames.COMMUNITY}
-                        component={UpcomingTestsScreen}
+                        component={FlashCardFlowScreen}
                     />
                     <Tab.Screen
                         name={RouteNames.BADGES}
@@ -95,7 +94,7 @@ const App = () => {
                     />
                 </Tab.Navigator>
             </NavigationContainer>
-        </SafeAreaProvider>
+        // </SafeAreaProvider>
     );
 };
 
