@@ -3,7 +3,7 @@ import {Text} from 'react-native';
 import styled from 'styled-components/native';
 import {Ionicons} from '@expo/vector-icons';
 
-import colors from '../../resources/colors';
+import colors from '../../../resources/colors';
 
 const FlashCardContainer = styled.View`
     background: ${colors.white};
@@ -42,7 +42,7 @@ const FlashCard = ({card}) => {
                         ? [{scaleX: -1}, {scaleY: -1}]
                         : [{scaleY: -1}]
                 }}
-                color={colors.purple}
+                color={colors.darkPurple}
                 onTouchStart={() => setFlipped(!isFlipped)}
             />
         </Container>

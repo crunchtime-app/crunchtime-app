@@ -8,6 +8,8 @@ const PageContainer = styled.View`
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    background: ${colors.lightGrey};
 `;
 
 const Header = styled.View`
@@ -17,12 +19,15 @@ const Header = styled.View`
     justify-content: center;
     align-items: center;
     padding: 10px;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 `;
 
 const Title = styled.Text`
     color: ${colors.white};
     opacity: 0.9;
-    font-size: 40px;
+    font-size: 30px;
 `;
 
 const Body = styled.View`
@@ -31,8 +36,6 @@ const Body = styled.View`
     align-items: center;
     padding: 10px;
     flex-grow: 1;
-
-    background: ${colors.lightGrey};
 `;
 
 const Page = ({title, children}) => {
