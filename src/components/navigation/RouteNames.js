@@ -1,9 +1,11 @@
 const RouteNames = {
     TAB_NAV: 'TabNavigator',
-    TEST_LIST_SCREEN: 'TestListScreen',
-    COMMUNITY: 'Community',
+    TEST_LIST_SCREEN: 'Today',
+    COMMUNITY: 'Decks',
     BADGES: 'Badges',
-    FLASHCARD_SESSION: 'Flash Card Session'
+    FLASHCARD_SESSION: 'Flash Card Session',
+    ADD_SCHEDULED_TEST: 'Add Scheduled Test',
+    ADD_NEW_DECK: 'Add Deck'
 };
 
 export default RouteNames; 

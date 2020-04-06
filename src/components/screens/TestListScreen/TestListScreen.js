@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {ScrollView} from 'react-native';
 import dayjs from 'dayjs';
+import {Ionicons} from '@expo/vector-icons';
 
 import {Page} from '../../common';
+import {colors} from '../../../resources';
+
 import ScheduledTestCard from './ScheduledTestCard';
+import RouteNames from '../../navigation/RouteNames';
 
 const mockTests = [
     {
@@ -11,23 +16,43 @@ const mockTests = [
         id: '111'
     },
     {
-        date: dayjs().add(7, 'day'),
+        date: dayjs().add(5, 'day'),
         name: 'Viruses',
         id: '112'
     },
     {
-        date: dayjs().add(7, 'day'),
+        date: dayjs().add(2, 'day'),
         name: 'Lists',
         id: '113'
     }
 ];
 
 const UpcomingTestsScreen = ({tests = mockTests, navigation}) => {
+    const [isModalVisible, setModalVisible] = useState(false);
+
     return (
-        <Page title="Upcoming Tests">
-            {tests.map(test => (
-                <ScheduledTestCard key={test.id} navigation={navigation} test={test} />
-            ))}
+        <Page
+            title="Home"
+            action={
+                <Ionicons
+                    name={'md-add-circle'}
+                    size={35}
+                    color={colors.white}
+                    onTouchStart={() =>
+                        navigation.navigate(RouteNames.ADD_SCHEDULED_TEST)
+                    }
+                />
+            }
+        >
+            <ScrollView style={{width: '100%'}}>
+                {tests.map(test => (
+                    <ScheduledTestCard
+                        key={test.id}
+                        navigation={navigation}
+                        test={test}
+                    />
+                ))}
+            </ScrollView>
         </Page>
     );
 };

@@ -24,15 +24,20 @@ const Container = styled.View`
     padding-bottom: 50px;
 `;
 
+const FlashCardText = styled.Text`
+    font-size: 36px;
+    color: ${colors.body};
+`;
+
 const FlashCard = ({card}) => {
     const [isFlipped, setFlipped] = useState(false);
 
     return (
         <Container>
             <FlashCardContainer onTouchStart={() => setFlipped(!isFlipped)}>
-                <Text style={{fontSize: 36}}>
+                <FlashCardText>
                     {isFlipped ? card.back : card.front}
-                </Text>
+                </FlashCardText>
             </FlashCardContainer>
             <Ionicons
                 name="md-redo"
@@ -42,7 +47,7 @@ const FlashCard = ({card}) => {
                         ? [{scaleX: -1}, {scaleY: -1}]
                         : [{scaleY: -1}]
                 }}
-                color={colors.darkPurple}
+                color={colors.aqua}
                 onTouchStart={() => setFlipped(!isFlipped)}
             />
         </Container>

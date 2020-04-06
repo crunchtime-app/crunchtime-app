@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-// import styled from 'styled-components';
-import {View} from 'react-native';
+import styled from 'styled-components/native';
+import {useNavigation} from '@react-navigation/native';
+// import {View} from 'react-native';
 
-import {Title, Page, Button} from '../../common';
-import {FlashCard} from '.';
+import {Modal, Button} from '../../common';
+import FlashCard from './FlashCard';
 
 const mockCards = [
     {
@@ -32,8 +33,14 @@ const mockCards = [
     }
 ];
 
-const FlashCardFlowScreen = ({cards = mockCards, navigation}) => {
+const Counter = styled.Text`
+    margin: 20px 0 50px 0;
+    font-size: 30px;
+`;
+
+const FlashCardFlowScreen = ({cards = mockCards}) => {
     const [currentCard, setCurrentCard] = useState(0);
+    const navigation = useNavigation();
 
     useEffect(() => {
         if (cards.length === currentCard) {
@@ -42,12 +49,10 @@ const FlashCardFlowScreen = ({cards = mockCards, navigation}) => {
     });
 
     return (
-        <View style={{height: '100%'}}>
+        <>
             {cards[currentCard] && (
-                <Page title={currentCard + 1 + " of " + cards.length}>
-                    {/* <Title>
-                        {} of {cards.length}
-                    </Title> */}
+                <Modal>
+                    <Counter>{currentCard + 1 + ' of ' + cards.length}</Counter>
                     <FlashCard card={cards[currentCard]} />
                     <Button
                         primary
@@ -72,9 +77,9 @@ const FlashCardFlowScreen = ({cards = mockCards, navigation}) => {
                             )
                         }
                     />
-                </Page>
+                </Modal>
             )}
-        </View>
+        </>
     );
 };
 

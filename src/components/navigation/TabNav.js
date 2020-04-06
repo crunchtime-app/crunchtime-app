@@ -5,10 +5,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {colors} from '../../resources';
 import {
     TestListScreen,
-    FlashCardFlowScreen,
+    DecksListScreen,
     AchievementScreen
 } from '../screens';
-import {RouteNames} from '.';
+import RouteNames from './RouteNames';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +16,7 @@ const TabNav = () => {
     return (
         <Tab.Navigator
             tabBarOptions={{
-                activeTintColor: colors.darkPurple,
+                activeTintColor: colors.aqua,
                 inactiveTintColor: colors.grey,
                 style: {
                     borderTopLeftRadius: 20,
@@ -41,7 +41,7 @@ const TabNav = () => {
             />
             <Tab.Screen
                 name={RouteNames.COMMUNITY}
-                component={FlashCardFlowScreen}
+                component={DecksListScreen}
                 options={{
                     tabBarIcon: ({color, size}) => (
                         <Ionicons name={'md-apps'} size={size} color={color} />

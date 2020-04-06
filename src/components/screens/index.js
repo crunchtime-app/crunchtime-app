@@ -1,5 +1,6 @@
-export {default as AchievementScreen} from './AchievementScreen';
-export {FlashCardFlowScreen} from './FlashCardFlowScreen';
-export {default as NewDeckScreen} from './NewDeckScreen';
-export {default as NewTestScreen} from './NewTestScreen';
+export {AchievementScreen} from './AchievementScreen';
+export {FlashCardFlowModal} from './FlashCardFlowModal';
 export {TestListScreen} from './TestListScreen';
+export {DecksListScreen} from './DecksListScreen';
+export {AddTestModal} from './AddTestModal';
+export {AddDeckModal} from './AddDeckModal';
