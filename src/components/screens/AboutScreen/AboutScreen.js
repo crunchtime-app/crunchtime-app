@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
+
+import {colors} from '../../../resources';
 import {Page, BaseCard} from '../../common';
 
 const Card = styled(BaseCard)`
@@ -10,6 +12,7 @@ const BodyText = styled.Text`
     font-size: 20px;
     line-height: 28px;
     margin-bottom: 20px;
+    color: ${colors.body};
 `;
 const Em = styled.Text`
     font-weight: bold;
