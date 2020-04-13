@@ -4,7 +4,7 @@ import {colors} from '../../resources';
 
 const BaseCard = styled.View`
     background: ${colors.white};
-    width: 95%;
+    width: 100%;
     min-height: 80px;
 
     display: flex;
@@ -12,7 +12,7 @@ const BaseCard = styled.View`
     align-items: center;
 
     border-radius: 15px;
-    margin: 5px;
+    margin: 5px 0;
 `;
 
 export default BaseCard;

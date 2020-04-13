@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Picker} from 'react-native';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 
 import {Modal, Button} from '../../common';
 import {DatePicker, Label, InputRow, ButtonRow} from '../../common/form';
@@ -30,7 +30,7 @@ const AddTestModal = () => {
     const navigation = useNavigation();
 
     const [selectedSubject, setSelectedSubject] = useState('');
-    const [date, setDate] = useState(dayjs());
+    const [date, setDate] = useState(new Date());
 
     return (
         <Modal>

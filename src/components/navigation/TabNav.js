@@ -6,7 +6,8 @@ import {colors} from '../../resources';
 import {
     TestListScreen,
     DecksListScreen,
-    AchievementScreen
+    AchievementScreen,
+    AboutScreen,
 } from '../screens';
 import RouteNames from './RouteNames';
 
@@ -22,8 +23,8 @@ const TabNav = () => {
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
                     overflow: 'hidden',
-                    position: 'absolute'
-                }
+                    position: 'absolute',
+                },
             }}
         >
             <Tab.Screen
@@ -36,7 +37,7 @@ const TabNav = () => {
                             size={size}
                             color={color}
                         />
-                    )
+                    ),
                 }}
             />
             <Tab.Screen
@@ -45,7 +46,7 @@ const TabNav = () => {
                 options={{
                     tabBarIcon: ({color, size}) => (
                         <Ionicons name={'md-apps'} size={size} color={color} />
-                    )
+                    ),
                 }}
             />
             <Tab.Screen
@@ -58,7 +59,20 @@ const TabNav = () => {
                             size={size}
                             color={color}
                         />
-                    )
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name={RouteNames.ABOUT_CRUNCHTIME}
+                component={AboutScreen}
+                options={{
+                    tabBarIcon: ({color, size}) => (
+                        <Ionicons
+                            name={'ios-information-circle'}
+                            size={size}
+                            color={color}
+                        />
+                    ),
                 }}
             />
         </Tab.Navigator>

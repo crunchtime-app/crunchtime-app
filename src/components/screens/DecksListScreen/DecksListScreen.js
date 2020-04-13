@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
-import {ScrollView, Text} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 
 import {RouteNames} from '../../navigation';
@@ -14,25 +14,25 @@ const mockDecks = [
         decks: [
             {
                 id: 1,
-                name: 'Electromagnetism'
+                name: 'Electromagnetism',
             },
             {
                 id: 2,
-                name: 'Projectiles'
+                name: 'Projectiles',
             },
             {
                 id: 3,
-                name: 'Gravity'
+                name: 'Gravity',
             },
             {
                 id: 4,
-                name: 'Force'
+                name: 'Force',
             },
             {
                 id: 5,
-                name: 'Acceleration'
-            }
-        ]
+                name: 'Acceleration',
+            },
+        ],
     },
     {
         subject: 'Computer Science',
@@ -40,26 +40,26 @@ const mockDecks = [
         decks: [
             {
                 id: 12,
-                name: 'Linked Lists'
+                name: 'Linked Lists',
             },
             {
                 id: 22,
-                name: 'Arrays'
+                name: 'Arrays',
             },
             {
                 id: 32,
-                name: 'AI'
+                name: 'AI',
             },
             {
                 id: 42,
-                name: 'Stacks'
+                name: 'Stacks',
             },
             {
                 id: 52,
-                name: 'Networks'
-            }
-        ]
-    }
+                name: 'Networks',
+            },
+        ],
+    },
 ];
 
 const DeckCard = styled(BaseCard)`
@@ -97,22 +97,22 @@ const DecksListScreen = ({decksBySubject = mockDecks, navigation}) => {
             }
         >
             <ScrollView style={{width: '100%'}}>
-                {decksBySubject.map(obj => (
-                    <>
+                {decksBySubject.map((obj) => (
+                    <View key={obj.id}>
                         <SubjectTitle>{obj.subject}</SubjectTitle>
                         <DeckContainer>
                             <ScrollView
                                 style={{width: '100%'}}
                                 horizontal={true}
                             >
-                                {obj.decks.map(deck => (
-                                    <DeckCard>
+                                {obj.decks.map((deck) => (
+                                    <DeckCard key={deck.id}>
                                         <Text>{deck.name}</Text>
                                     </DeckCard>
                                 ))}
                             </ScrollView>
                         </DeckContainer>
-                    </>
+                    </View>
                 ))}
             </ScrollView>
         </Page>
