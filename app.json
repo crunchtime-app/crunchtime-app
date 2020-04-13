@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Spaced Rep Flash Card App",
-    "slug": "spaced-rep-app",
+    "name": "CrunchTime",
+    "slug": "crunchtime-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -24,7 +24,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "entryPoint": "./src/App.js"
   }
