@@ -6,7 +6,8 @@ const RouteNames = {
     FLASHCARD_SESSION: 'Flash Card Session',
     ADD_SCHEDULED_TEST: 'Add Scheduled Test',
     ADD_NEW_DECK: 'Add Deck',
-    ABOUT_CRUNCHTIME: 'About'
+    ABOUT_CRUNCHTIME: 'About',
+    LOGIN_SCREEN: 'Login Screen'
 };
 
 export default RouteNames; 

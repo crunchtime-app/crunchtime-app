@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {FlashCardFlowModal, AddTestModal, AddDeckModal} from '../screens';
+import {FlashCardFlowModal, AddTestModal, AddDeckModal, LoginScreen} from '../screens';
 import {colors} from '../../resources';
 
 import TabNav from './TabNav';
@@ -16,6 +16,7 @@ const RootNav = () => {
             mode="modal"
             screenOptions={{cardStyle: {backgroundColor: colors.modalShadow}}}
         >
+            <Root.Screen name={RouteNames.LOGIN_SCREEN} component={LoginScreen} />
             <Root.Screen name={RouteNames.TAB_NAV} component={TabNav} />
             <Root.Screen
                 name={RouteNames.FLASHCARD_SESSION}
