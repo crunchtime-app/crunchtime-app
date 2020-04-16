@@ -60,9 +60,9 @@ const Page = ({title, children, action}) => {
                 <LinearGradient
                     style={{flex: 1}}
                     colors={[colors.backgroundTop, colors.backgroundBottom]}
-                    start={[0.0, 0.0]}
-                    start={[1.0, 0.0]}
-                    locations={[0.45, 1.0]}
+                    // start={[0.0, 0.0]}
+                    // start={[1.0, 0.0]}
+                    // locations={[0.45, 1.0]}
                 >
                     <Body>{children}</Body>
                 </LinearGradient>

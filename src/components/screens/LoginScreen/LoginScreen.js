@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
+import {useDispatch} from 'react-redux';
 
 import {RouteNames} from '../../navigation';
 import {Page, BaseCard, Button} from '../../common';
 import {TextInput, Label, InputRow} from '../../common/form';
 import {axios} from '../../../services';
+import {saveToken} from '../../../state/reducers/authReducer';
 
 const Card = styled(BaseCard)`
     flex-direction: column;
@@ -15,20 +17,20 @@ const Card = styled(BaseCard)`
 
 const LoginScreen = () => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
 
     const handleLogin = async () => {
-        const result = await axios.post('/api/authentication', {
-            email: emailInput,
-            password: passwordInput,
-        });
-
-        if (result.status == 200) {
-            // set global state
+        try {
+            const result = await axios.post('/api/authentication', {
+                email: emailInput,
+                password: passwordInput,
+            });
+            dispatch(saveToken(result.data.token));
             navigation.navigate(RouteNames.TAB_NAV);
-        } else {
-            console.log('error message goes here');
+        } catch (err) {
+            console.log('Error message goes here', err);
         }
     };
 
@@ -40,7 +42,7 @@ const LoginScreen = () => {
     };
 
     return (
-        <Page title="CrunchTime">
+        <Page>
             <Card>
                 <InputRow>
                     <Label>Email</Label>
@@ -54,6 +56,7 @@ const LoginScreen = () => {
                     <Label>Password</Label>
                     <TextInput
                         value={passwordInput}
+                        secureTextEntry={true}
                         onChangeText={(val) => setPasswordInput(val)}
                         placeholder="******"
                     />

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useStore} from 'react-redux';
 import {ScrollView} from 'react-native';
 import dayjs from 'dayjs';
 import {Ionicons} from '@expo/vector-icons';
@@ -13,22 +14,25 @@ const mockTests = [
     {
         date: dayjs().add(7, 'day'),
         name: 'Physics',
-        id: '111'
+        id: '111',
     },
     {
         date: dayjs().add(5, 'day'),
         name: 'Viruses',
-        id: '112'
+        id: '112',
     },
     {
         date: dayjs().add(2, 'day'),
         name: 'Lists',
-        id: '113'
-    }
+        id: '113',
+    },
 ];
 
 const UpcomingTestsScreen = ({tests = mockTests, navigation}) => {
     const [isModalVisible, setModalVisible] = useState(false);
+
+    console.log('hello');
+    console.log(useStore().getState());
 
     return (
         <Page
@@ -45,7 +49,7 @@ const UpcomingTestsScreen = ({tests = mockTests, navigation}) => {
             }
         >
             <ScrollView style={{width: '100%'}}>
-                {tests.map(test => (
+                {tests.map((test) => (
                     <ScheduledTestCard
                         key={test.id}
                         navigation={navigation}

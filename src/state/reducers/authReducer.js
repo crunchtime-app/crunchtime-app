@@ -3,16 +3,18 @@ const ActionTypes = {
 };
 
 // Action Creators
-export const SAVE_TOKEN = (token) => ({
-    type: ActionTypes.LOGIN,
-    payload: token,
-});
+export const saveToken = (token) => {
+    return {
+        type: ActionTypes.SAVE_TOKEN,
+        payload: token,
+    };
+};
 
 // Reducer
 export default function reducer(state = {}, action = {}) {
     switch (action.type) {
         case ActionTypes.SAVE_TOKEN: {
-            return {...state, token: action.token};
+            return {...state, token: action.payload};
         }
 
         default: {
