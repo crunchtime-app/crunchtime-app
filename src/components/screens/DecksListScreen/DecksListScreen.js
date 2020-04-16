@@ -66,6 +66,7 @@ const DeckCard = styled(BaseCard)`
     justify-content: center;
     width: 200px;
     margin-bottom: 20px;
+    margin-right: 5px;
 `;
 
 const DeckContainer = styled.View`
