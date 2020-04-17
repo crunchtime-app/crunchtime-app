@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useStore} from 'react-redux';
+// import {useStore} from 'react-redux';
 import {ScrollView} from 'react-native';
 import dayjs from 'dayjs';
 import {Ionicons} from '@expo/vector-icons';
@@ -9,6 +9,8 @@ import {colors} from '../../../resources';
 
 import ScheduledTestCard from './ScheduledTestCard';
 import RouteNames from '../../navigation/RouteNames';
+
+import {useStateValue} from '../../../state';
 
 const mockTests = [
     {
@@ -32,7 +34,10 @@ const UpcomingTestsScreen = ({tests = mockTests, navigation}) => {
     const [isModalVisible, setModalVisible] = useState(false);
 
     console.log('hello');
-    console.log(useStore().getState());
+    // console.log(useStore().getState());
+
+    const [{token}, dispatch] = useStateValue();
+    console.log(token);
 
     return (
         <Page
