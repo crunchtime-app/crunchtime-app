@@ -5,13 +5,12 @@ import {RouteNames} from '../../navigation';
 import {Page, Button} from '../../common';
 import {TextInput, Label, InputRow} from '../../common/form';
 import {axios} from '../../../services';
-import {useStateValue, saveToken} from '../../../state';
+import {storeToken} from '../../../state/storage';
 
 const LoginScreen = () => {
     const navigation = useNavigation();
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
-    const [{}, dispatch] = useStateValue();
 
     const handleLogin = async () => {
         try {
@@ -19,7 +18,9 @@ const LoginScreen = () => {
                 email: emailInput,
                 password: passwordInput,
             });
-            dispatch(saveToken(result.data.token));
+
+            const token = result.data.token;
+            await storeToken(token);
             navigation.navigate(RouteNames.TAB_NAV);
         } catch (err) {
             console.log('Error message goes here', err);

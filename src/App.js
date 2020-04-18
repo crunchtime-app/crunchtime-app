@@ -1,37 +1,34 @@
 import React from 'react';
 import {registerRootComponent} from 'expo';
 import {NavigationContainer} from '@react-navigation/native';
-
 import {RootNav} from './components/navigation';
-import {StateProvider, SAVE_TOKEN} from './state';
+
+import {AsyncStorage} from 'react-native';
+
+import {TokenContext} from './state';
 
 const App = () => {
-    const initialState = {
-        token: 'initial token state',
+
+    const [token, setToken] = React.useState('');
+
+    const retrieveData = async () => {
+        const storedToken = await AsyncStorage.getItem('token');
+        console.log(storedToken);
+        setToken(storedToken);
+
+        return;
     };
 
-    const reducer = (state, action) => {
-
-        switch (action.type) {
-            case SAVE_TOKEN:
-                return {
-                    ...state,
-                    token: action.token,
-                };
-
-            default:
-                return state;
-        }
-    };
+    React.useEffect(() => {
+        retrieveData();
+    }, []);
 
     return (
-        // <Provider store={store}>
-        <StateProvider initialState={initialState} reducer={reducer}>
-            <NavigationContainer>
-                <RootNav />
-            </NavigationContainer>
-        </StateProvider>
-        // </Provider>
+        <NavigationContainer>
+            <TokenContext.Provider value={{token}}>
+                <RootNav  />
+            </TokenContext.Provider>
+        </NavigationContainer>
     );
 };
 
