@@ -8,15 +8,21 @@ import {AsyncStorage} from 'react-native';
 import {TokenContext} from './state';
 
 const App = () => {
-
     const [token, setToken] = React.useState('');
 
     const retrieveData = async () => {
-        const storedToken = await AsyncStorage.getItem('token');
-        console.log(storedToken);
+        const storedToken = await AsyncStorage.getItem('@token');
         setToken(storedToken);
+    };
 
-        return;
+    const storeToken = async (token) => {
+        await AsyncStorage.setItem('@token');
+        setToken(token);
+    };
+
+    const clearToken = async () => {
+        await AsyncStorage.removeItem('@token');
+        setToken('');
     };
 
     React.useEffect(() => {
@@ -25,8 +31,8 @@ const App = () => {
 
     return (
         <NavigationContainer>
-            <TokenContext.Provider value={{token}}>
-                <RootNav  />
+            <TokenContext.Provider value={{token, clearToken, storeToken}}>
+                <RootNav />
             </TokenContext.Provider>
         </NavigationContainer>
     );

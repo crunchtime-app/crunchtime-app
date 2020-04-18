@@ -1,16 +1,14 @@
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, {useState, useContext} from 'react';
 
-import {RouteNames} from '../../navigation';
 import {Page, Button} from '../../common';
 import {TextInput, Label, InputRow} from '../../common/form';
 import {axios} from '../../../services';
-import {storeToken} from '../../../state/storage';
+import {TokenContext} from '../../../state';
 
 const LoginScreen = () => {
-    const navigation = useNavigation();
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
+    const {storeToken} = useContext(TokenContext);
 
     const handleLogin = async () => {
         try {
@@ -21,7 +19,8 @@ const LoginScreen = () => {
 
             const token = result.data.token;
             await storeToken(token);
-            navigation.navigate(RouteNames.TAB_NAV);
+            // await storeToken(token);
+            // navigation.navigate(RouteNames.TAB_NAV);
         } catch (err) {
             console.log('Error message goes here', err);
         }
@@ -33,8 +32,9 @@ const LoginScreen = () => {
                 email: emailInput,
                 password: passwordInput,
             });
-            dispatch({type: 'saveToken', token: result.data.token});
-            navigation.navigate(RouteNames.TAB_NAV);
+
+            const token = result.data.token;
+            await storeToken(token);
         } catch (err) {
             console.log('Error message goes here', err);
         }

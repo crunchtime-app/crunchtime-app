@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import {colors} from '../../../resources';
-import {Page, BaseCard} from '../../common';
+import {Page, BaseCard, Button} from '../../common';
+import {TokenContext} from '../../../state';
 
 const Card = styled(BaseCard)`
     flex-direction: column;
@@ -19,6 +20,13 @@ const Em = styled.Text`
 `;
 
 const AboutScreen = () => {
+    const {clearToken} = React.useContext(TokenContext);
+    const handleLogout = async () => {
+        console.log('clearing token....');
+        await clearToken();
+        console.log('token cleared?');
+    };
+
     return (
         <Page title="About CrunchTime">
             <Card>
@@ -35,6 +43,9 @@ const AboutScreen = () => {
                     help you study and help you achieve better grades by helping
                     you study regularly.
                 </BodyText>
+            </Card>
+            <Card>
+                <Button onPress={() => handleLogout()}>Logout</Button>
             </Card>
         </Page>
     );

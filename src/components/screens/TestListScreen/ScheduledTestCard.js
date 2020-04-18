@@ -31,7 +31,7 @@ const ScheduledTestCard = ({test, navigation}) => {
     return (
         <Card onTouchStart={() => navigation.navigate('Flash Card Session')}>
             <View>
-                <TestName>{test.name}</TestName>
+                <TestName>{test.deck.name}</TestName>
                 <TestSubtitle>Test {dateString}</TestSubtitle>
             </View>
             <EvilIcons name={'chevron-right'} size={50} color={colors.action} />

@@ -16,8 +16,11 @@ import RouteNames from './RouteNames';
 const Root = createStackNavigator();
 
 const RootNav = () => {
-    const token = React.useContext(TokenContext);
+    const {token} = React.useContext(TokenContext);
+    console.log(token);
     const isSignedIn = !!token;
+
+    console.log(isSignedIn, 'isSignedIn');
 
     return (
         <Root.Navigator
