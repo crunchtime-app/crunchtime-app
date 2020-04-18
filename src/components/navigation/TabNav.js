@@ -17,8 +17,8 @@ const TabNav = () => {
     return (
         <Tab.Navigator
             tabBarOptions={{
-                activeTintColor: colors.aqua,
-                inactiveTintColor: colors.grey,
+                activeTintColor: colors.tabIcons,
+                inactiveTintColor: colors.inactive,
                 style: {
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,

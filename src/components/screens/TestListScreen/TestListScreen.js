@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {ScrollView} from 'react-native';
 import dayjs from 'dayjs';
 import {Ionicons} from '@expo/vector-icons';
@@ -7,6 +7,7 @@ import {Page} from '../../common';
 import {colors} from '../../../resources';
 import RouteNames from '../../navigation/RouteNames';
 import {axios} from '../../../services';
+import {TokenContext} from '../../../state';
 
 import ScheduledTestCard from './ScheduledTestCard';
 
@@ -30,14 +31,12 @@ const mockTests = [
 
 const UpcomingTestsScreen = ({navigation}) => {
     const [tests, setTests] = useState([]);
+    const {token} = React.useContext(TokenContext);
 
     useEffect(() => {
         const fetchTests = async () => {
             const result = await axios('/api/tests', {
-                headers: {
-                    authorization:
-                        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MjAsImVtYWlsIjoiYWJjQGdtYWlsLmNvbSIsIm5hbWUiOm51bGwsImNyZWF0aW9uX2RhdGUiOiIyMDIwLTA0LTE4VDAxOjE5OjE5LjEzNTQ0MyIsInRlc3RzIjpbXX0.lKWl_wliCYhdz9RwPYHJF_3IYbCZWorHIrTXqptjI14',
-                },
+                headers: {authorization: token},
             });
             setTests(result.data);
         };

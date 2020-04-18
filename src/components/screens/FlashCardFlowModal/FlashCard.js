@@ -47,7 +47,7 @@ const FlashCard = ({card}) => {
                         ? [{scaleX: -1}, {scaleY: -1}]
                         : [{scaleY: -1}]
                 }}
-                color={colors.aqua}
+                color={colors.action}
                 onTouchStart={() => setFlipped(!isFlipped)}
             />
         </Container>

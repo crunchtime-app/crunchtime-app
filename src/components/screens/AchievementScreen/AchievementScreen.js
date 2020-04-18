@@ -68,7 +68,7 @@ const Badge = styled.View`
     height: 50px;
     border-radius: 50px;
     margin-right: 15px;
-    background: ${props => (props.achieved ? colors.aqua : colors.grey)};
+    background: ${props => (props.achieved ? colors.action : colors.grey)};
 `;
 
 const Description = styled.Text`
@@ -82,7 +82,7 @@ const AchievementScreen = ({achievements = testAchievements}) => {
                 {achievements.map((cheevo, i) => (
                     <Achievement key={cheevo.id}>
                         <Badge achieved={cheevo.achieved} />
-                        <Description status={true}>{cheevo.desc}</Description>
+                        <Description status={'true'}>{cheevo.desc}</Description>
                     </Achievement>
                 ))}
             </ScrollView>

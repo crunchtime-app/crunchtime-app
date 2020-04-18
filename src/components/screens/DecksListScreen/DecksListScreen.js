@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import styled from 'styled-components/native';
 import {ScrollView, Text, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
@@ -6,6 +6,8 @@ import {Ionicons} from '@expo/vector-icons';
 import {RouteNames} from '../../navigation';
 import {Page, BaseCard} from '../../common';
 import {colors} from '../../../resources';
+import {axios} from '../../../services';
+import {TokenContext} from '../../../state';
 
 const mockDecks = [
     {
@@ -83,6 +85,36 @@ const SubjectTitle = styled.Text`
 `;
 
 const DecksListScreen = ({decksBySubject = mockDecks, navigation}) => {
+    const [decks, setDecks] = useState([]);
+    const [subjects, setSubjects] = useState([]);
+    const {token} = useContext(TokenContext);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const result = await axios('/api/decks', {
+                headers: {authorization: token},
+            });
+            setDecks(result.data);
+        };
+
+        fetch();
+    }, []);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const result = await axios('/api/subjects', {
+                headers: {authorization: token},
+            });
+            setSubjects(result.data);
+        };
+
+        fetch();
+    }, []);
+
+    // const filterDeckBySubject = (decks, subject_id) => {
+    //     return decks.filter()
+    // }
+
     return (
         <Page
             title="Decks"
@@ -98,19 +130,23 @@ const DecksListScreen = ({decksBySubject = mockDecks, navigation}) => {
             }
         >
             <ScrollView style={{width: '100%'}}>
-                {decksBySubject.map((obj) => (
-                    <View key={obj.id}>
-                        <SubjectTitle>{obj.subject}</SubjectTitle>
+                {subjects.map((subject) => (
+                    <View key={subject.id}>
+                        <SubjectTitle>{subject.name}</SubjectTitle>
                         <DeckContainer>
                             <ScrollView
                                 style={{width: '100%'}}
                                 horizontal={true}
                             >
-                                {obj.decks.map((deck) => (
-                                    <DeckCard key={deck.id}>
-                                        <Text>{deck.name}</Text>
-                                    </DeckCard>
-                                ))}
+                                {decks
+                                    .filter(
+                                        (deck) => deck.subject.id == subject.id
+                                    )
+                                    .map((deck) => (
+                                        <DeckCard key={deck.id}>
+                                            <Text>{deck.name}</Text>
+                                        </DeckCard>
+                                    ))}
                             </ScrollView>
                         </DeckContainer>
                     </View>

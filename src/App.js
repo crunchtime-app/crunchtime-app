@@ -15,9 +15,9 @@ const App = () => {
         setToken(storedToken);
     };
 
-    const storeToken = async (token) => {
-        await AsyncStorage.setItem('@token');
-        setToken(token);
+    const storeToken = async (_token) => {
+        await AsyncStorage.setItem('@token', _token);
+        setToken(_token);
     };
 
     const clearToken = async () => {
@@ -28,6 +28,8 @@ const App = () => {
     React.useEffect(() => {
         retrieveData();
     }, []);
+
+    console.log('token in app', token);
 
     return (
         <NavigationContainer>

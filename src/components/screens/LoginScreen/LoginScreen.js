@@ -61,7 +61,7 @@ const LoginScreen = () => {
             </InputRow>
             <InputRow>
                 <Button onPress={() => handleLogin()}>Login</Button>
-                <Button onPress={() => handleSignup()} primary>
+                <Button onPress={() => handleSignup()} primary={'true'}>
                     Signup
                 </Button>
             </InputRow>
