@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import styled from 'styled-components/native';
 import {ScrollView} from 'react-native';
 
 import {colors} from '../../../resources';
 import {Page, BaseCard} from '../../common';
+import axios from '../../../services';
+import {TokenContext} from '../../../state';
 
 const testAchievements = [
     {
@@ -75,7 +77,21 @@ const Description = styled.Text`
     font-size: 20px;
 `;
 
-const AchievementScreen = ({achievements = testAchievements}) => {
+const AchievementScreen = () => {
+    const [achievements, setAchievements] = useState(testAchievements);
+    const {token} = useContext(TokenContext);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const result = await axios('/api/badges', {
+                headers: {authorization: token},
+            });
+            setAchievements(result.data);
+        };
+
+        fetch();
+    }, []);
+
     return (
         <Page title="Achievements">
             <ScrollView>

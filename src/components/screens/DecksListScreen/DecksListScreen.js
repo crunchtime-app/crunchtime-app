@@ -6,63 +6,8 @@ import {Ionicons} from '@expo/vector-icons';
 import {RouteNames} from '../../navigation';
 import {Page, BaseCard} from '../../common';
 import {colors} from '../../../resources';
-import {axios} from '../../../services';
+import axios from '../../../services';
 import {TokenContext} from '../../../state';
-
-const mockDecks = [
-    {
-        subject: 'Physics',
-        id: 111,
-        decks: [
-            {
-                id: 1,
-                name: 'Electromagnetism',
-            },
-            {
-                id: 2,
-                name: 'Projectiles',
-            },
-            {
-                id: 3,
-                name: 'Gravity',
-            },
-            {
-                id: 4,
-                name: 'Force',
-            },
-            {
-                id: 5,
-                name: 'Acceleration',
-            },
-        ],
-    },
-    {
-        subject: 'Computer Science',
-        id: 112,
-        decks: [
-            {
-                id: 12,
-                name: 'Linked Lists',
-            },
-            {
-                id: 22,
-                name: 'Arrays',
-            },
-            {
-                id: 32,
-                name: 'AI',
-            },
-            {
-                id: 42,
-                name: 'Stacks',
-            },
-            {
-                id: 52,
-                name: 'Networks',
-            },
-        ],
-    },
-];
 
 const DeckCard = styled(BaseCard)`
     justify-content: center;
@@ -84,7 +29,7 @@ const SubjectTitle = styled.Text`
     margin-left: 15px;
 `;
 
-const DecksListScreen = ({decksBySubject = mockDecks, navigation}) => {
+const DecksListScreen = ({navigation}) => {
     const [decks, setDecks] = useState([]);
     const [subjects, setSubjects] = useState([]);
     const {token} = useContext(TokenContext);
@@ -110,10 +55,6 @@ const DecksListScreen = ({decksBySubject = mockDecks, navigation}) => {
 
         fetch();
     }, []);
-
-    // const filterDeckBySubject = (decks, subject_id) => {
-    //     return decks.filter()
-    // }
 
     return (
         <Page

@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 
 import {Page, Button} from '../../common';
 import {TextInput, Label, InputRow} from '../../common/form';
-import {axios} from '../../../services';
+import axios from '../../../services';
 import {TokenContext} from '../../../state';
 
 const LoginScreen = () => {

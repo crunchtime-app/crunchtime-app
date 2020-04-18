@@ -6,7 +6,7 @@ import {Ionicons} from '@expo/vector-icons';
 import {Page} from '../../common';
 import {colors} from '../../../resources';
 import RouteNames from '../../navigation/RouteNames';
-import {axios} from '../../../services';
+import axios from '../../../services';
 import {TokenContext} from '../../../state';
 
 import ScheduledTestCard from './ScheduledTestCard';
