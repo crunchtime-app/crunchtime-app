@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import {ScrollView, Text, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 
-import {RouteNames} from '../../navigation';
+import RouteNames from '../../navigation/RouteNames';
 import {Page, BaseCard} from '../../common';
 import {colors} from '../../../resources';
 import axios from '../../../services';

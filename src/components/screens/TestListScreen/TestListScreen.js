@@ -10,8 +10,14 @@ import axios, {useGetEndpoint} from '../../../services';
 
 import ScheduledTestCard from './ScheduledTestCard';
 
-const UpcomingTestsScreen = ({navigation}) => {
-    const tests = useGetEndpoint('/api/tests');
+const UpcomingTestsScreen = ({navigation, route}) => {
+    const [tests, setTests] = useGetEndpoint('/api/tests');
+
+    useEffect(() => {
+        if (route.params?.newTest) {
+            setTests([...tests, route.params.newTest])
+        }
+    }, [route.params?.newTest]);
 
     return (
         <Page

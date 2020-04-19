@@ -29,10 +29,10 @@ const AchievementScreen = () => {
     const {token} = useContext(TokenContext);
     let userId = decode(token).id;
 
-    const userAchievements = useGetEndpoint(`/api/users/${userId}/badges`);
+    const [userAchievements] = useGetEndpoint(`/api/users/${userId}/badges`);
     const earnedIds = userAchievements.map((a) => a.id);
 
-    const allAchievements = useGetEndpoint('/api/badges');
+    const [allAchievements] = useGetEndpoint('/api/badges');
 
     const activeAchievements = allAchievements
         .filter((a) => earnedIds.includes(a.id))

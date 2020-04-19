@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text} from 'react-native'; 
+// import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-datepicker';
 
-const DatePicker = () => {
+const CTDatePicker = (props) => {
     return (
-        <Text>DatePicker Goes Here</Text>
+        <DatePicker {...props} />
     )
 };
 
-export default DatePicker; 
+export default CTDatePicker;

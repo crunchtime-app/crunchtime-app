@@ -23,14 +23,14 @@ export const useGetEndpoint = (endpoint) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await instance(endpoint);
+            const result = await instance.get(endpoint);
             setData(result.data);
         };
 
         fetchData();
     }, []);
 
-    return data;
+    return [data, setData];
 };
 
 export default instance;
