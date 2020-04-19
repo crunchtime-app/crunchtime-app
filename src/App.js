@@ -1,35 +1,35 @@
 import React from 'react';
 import {registerRootComponent} from 'expo';
 import {NavigationContainer} from '@react-navigation/native';
-import {RootNav} from './components/navigation';
-
 import {AsyncStorage} from 'react-native';
-
 import {TokenContext} from './state';
+
+import {RootNav} from './components/navigation';
+import axios from './services';
 
 const App = () => {
     const [token, setToken] = React.useState('');
 
-    const retrieveData = async () => {
-        const storedToken = await AsyncStorage.getItem('@token');
-        setToken(storedToken);
-    };
+    React.useEffect(() => {
+        const retrieveToken = async () => {
+            const storedToken = await AsyncStorage.getItem('@token');
+            setToken(storedToken);
+            axios.defaults.headers.common['Authorization'] = storedToken;
+        };
+
+        retrieveToken();
+    }, []);
 
     const storeToken = async (_token) => {
         await AsyncStorage.setItem('@token', _token);
         setToken(_token);
+        axios.defaults.headers.common['Authorization'] = _token;
     };
 
     const clearToken = async () => {
         await AsyncStorage.removeItem('@token');
         setToken('');
     };
-
-    React.useEffect(() => {
-        retrieveData();
-    }, []);
-
-    console.log('token in app', token);
 
     return (
         <NavigationContainer>

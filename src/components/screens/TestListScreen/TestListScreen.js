@@ -6,43 +6,12 @@ import {Ionicons} from '@expo/vector-icons';
 import {Page} from '../../common';
 import {colors} from '../../../resources';
 import RouteNames from '../../navigation/RouteNames';
-import axios from '../../../services';
-import {TokenContext} from '../../../state';
+import axios, {useGetEndpoint} from '../../../services';
 
 import ScheduledTestCard from './ScheduledTestCard';
 
-const mockTests = [
-    {
-        date: dayjs().add(7, 'day'),
-        name: 'Physics',
-        id: '111',
-    },
-    {
-        date: dayjs().add(5, 'day'),
-        name: 'Viruses',
-        id: '112',
-    },
-    {
-        date: dayjs().add(2, 'day'),
-        name: 'Lists',
-        id: '113',
-    },
-];
-
 const UpcomingTestsScreen = ({navigation}) => {
-    const [tests, setTests] = useState([]);
-    const {token} = React.useContext(TokenContext);
-
-    useEffect(() => {
-        const fetchTests = async () => {
-            const result = await axios('/api/tests', {
-                headers: {authorization: token},
-            });
-            setTests(result.data);
-        };
-
-        fetchTests();
-    }, []);
+    const tests = useGetEndpoint('/api/tests');
 
     return (
         <Page

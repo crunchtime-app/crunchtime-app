@@ -7,7 +7,6 @@ import {RouteNames} from '../../navigation';
 import {Page, BaseCard} from '../../common';
 import {colors} from '../../../resources';
 import axios from '../../../services';
-import {TokenContext} from '../../../state';
 
 const DeckCard = styled(BaseCard)`
     justify-content: center;
@@ -32,13 +31,10 @@ const SubjectTitle = styled.Text`
 const DecksListScreen = ({navigation}) => {
     const [decks, setDecks] = useState([]);
     const [subjects, setSubjects] = useState([]);
-    const {token} = useContext(TokenContext);
 
     useEffect(() => {
         const fetch = async () => {
-            const result = await axios('/api/decks', {
-                headers: {authorization: token},
-            });
+            const result = await axios('/api/decks');
             setDecks(result.data);
         };
 
@@ -47,9 +43,7 @@ const DecksListScreen = ({navigation}) => {
 
     useEffect(() => {
         const fetch = async () => {
-            const result = await axios('/api/subjects', {
-                headers: {authorization: token},
-            });
+            const result = await axios('/api/subjects');
             setSubjects(result.data);
         };
 
