@@ -22,9 +22,7 @@ const Em = styled.Text`
 const AboutScreen = () => {
     const {clearToken} = React.useContext(TokenContext);
     const handleLogout = async () => {
-        console.log('clearing token....');
         await clearToken();
-        console.log('token cleared?');
     };
 
     return (

@@ -12,21 +12,20 @@ const ButtonContainer = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
 
-    background-color: ${props =>
-        props.primary ? colors.action : colors.white};
+    background-color: ${(props) =>
+        props.primary ? colors.action : 'transparent'};
     border: 3px solid
-        ${props => (props.primary ? colors.action : colors.action)};
+        ${(props) => (props.primary ? colors.action : colors.action)};
 `;
 
 const ButtonText = styled.Text`
     font-size: 20px;
-    color: ${props => (props.primary ? colors.white : colors.action)};
+    color: ${(props) => (props.primary ? colors.white : colors.action)};
     text-align: center;
 `;
 
 const Button = ({onPress, text, primary, children}) => {
-
-    const content = children ? children : text; 
+    const content = children ? children : text;
 
     return (
         <ButtonContainer onPress={onPress} primary={primary}>
