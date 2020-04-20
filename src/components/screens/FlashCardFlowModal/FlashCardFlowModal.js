@@ -5,48 +5,29 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Modal, Button} from '../../common';
 import FlashCard from './FlashCard';
-
-const mockCards = [
-    {
-        front: 'Hola',
-        back: 'Hello'
-    },
-    {
-        front: 'Aloha',
-        back: 'Hello'
-    },
-    {
-        front: 'Bye',
-        back: 'Hello'
-    },
-    {
-        front: 'Hi',
-        back: 'Hello'
-    },
-    {
-        front: 'Yello',
-        back: 'Hello'
-    },
-    {
-        front: 'Hola',
-        back: 'Amigo'
-    }
-];
+import {useGetEndpoint} from '../../../services';
 
 const Counter = styled.Text`
     margin: 20px 0 50px 0;
     font-size: 30px;
 `;
 
-const FlashCardFlowScreen = ({cards = mockCards}) => {
+const FlashCardFlowScreen = ({route}) => {
     const [currentCard, setCurrentCard] = useState(0);
     const navigation = useNavigation();
 
-    useEffect(() => {
-        if (cards.length === currentCard) {
+    const deckId = route.params.deckId;
+    const [cards] = useGetEndpoint(`/api/decks/${deckId}/cards`);
+
+    const handlePress = (isCorrect, currentCard, setCurrentCard) => {
+        setCurrentCard(currentCard + 1);
+
+        if (cards.length - 1 === currentCard) {
+            console.log(cards.length);
+            console.log(currentCard);
             navigation.popToTop();
         }
-    });
+    };
 
     return (
         <>
@@ -55,36 +36,22 @@ const FlashCardFlowScreen = ({cards = mockCards}) => {
                     <Counter>{currentCard + 1 + ' of ' + cards.length}</Counter>
                     <FlashCard card={cards[currentCard]} />
                     <Button
-                        primary
+                        primary="true"
                         text="Mark Correct"
                         onPress={() =>
-                            markCard(
-                                true,
-                                currentCard,
-                                setCurrentCard,
-                                navigation
-                            )
+                            handlePress(true, currentCard, setCurrentCard)
                         }
                     />
                     <Button
                         text="Mark Incorrect"
                         onPress={() =>
-                            markCard(
-                                false,
-                                currentCard,
-                                setCurrentCard,
-                                navigation
-                            )
+                            handlePress(false, currentCard, setCurrentCard)
                         }
                     />
                 </Modal>
             )}
         </>
     );
-};
-
-const markCard = (isCorrect, currentCard, setCurrentCard) => {
-    setCurrentCard(currentCard + 1);
 };
 
 export default FlashCardFlowScreen;

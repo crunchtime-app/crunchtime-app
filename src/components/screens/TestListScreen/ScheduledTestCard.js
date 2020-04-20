@@ -29,7 +29,7 @@ const ScheduledTestCard = ({test, navigation}) => {
     let dateString = dayjs().to(test.date);
 
     return (
-        <Card onTouchStart={() => navigation.navigate('Flash Card Session')} key={test.id}>
+        <Card onTouchStart={() => navigation.navigate('Flash Card Session', {deckId: test.deck.id, testId: test.id})} key={test.id}>
             <View>
                 <TestName>{test.deck.name}</TestName>
                 <TestSubtitle>Test {dateString}</TestSubtitle>

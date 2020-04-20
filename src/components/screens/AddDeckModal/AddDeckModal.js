@@ -5,14 +5,14 @@ import CreateDeck from './CreateDeck';
 import CreateCard from './CreateCard';
 
 const AddTestModal = () => {
-    const [isDeckView, setDeckView] = useState(true);
+    const [deckId, setDeckId] = useState('');
 
     return (
         <Modal>
-            {isDeckView ? (
-                <CreateDeck setDeckView={()=> setDeckView(false)} />
+            {!deckId ? (
+                <CreateDeck setDeckId={setDeckId} />
             ) : (
-                <CreateCard />
+                <CreateCard deckId={deckId} />
             )}
         </Modal>
     );

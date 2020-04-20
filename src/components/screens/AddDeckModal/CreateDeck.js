@@ -1,15 +1,31 @@
 import React, {useState} from 'react';
-import {Picker} from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import {useNavigation} from '@react-navigation/native';
 
 import {Button} from '../../common';
 import {Label, InputRow, ButtonRow, TextInput} from '../../common/form';
+import axios, {useGetEndpoint} from '../../../services';
 
-const CreateDeck = ({setDeckView}) => {
+const CreateDeck = ({setDeckId}) => {
     const navigation = useNavigation();
 
     const [deckName, setDeckName] = useState('');
-    const [selectedSubject, setSelectedSubject] = useState('');
+    const [subjectId, setSubjectId] = useState('');
+    const [subjects] = useGetEndpoint('/api/subjects');
+
+    const handleSubmit = async () => {
+        try {
+            const res = await axios.post('/api/decks', {
+                subject_id: subjectId,
+                name: deckName
+            });
+            setDeckId(res.data.id);
+        } catch (e) {
+            console.log(e)
+            navigation.goBack();
+        }
+    };
+
 
     return (
         <>
@@ -23,16 +39,13 @@ const CreateDeck = ({setDeckView}) => {
             </InputRow>
             <InputRow>
                 <Label>Subject</Label>
-                <Picker
-                    selectedValue={selectedSubject}
-                    onValueChange={val => setSelectedSubject(val)}
-                >
-                    <Picker.Item label="Computer Science" value="java" />
-                    <Picker.Item label="Physics" value="js" />
-                </Picker>
+                <RNPickerSelect
+                    onValueChange={(val) => setSubjectId(val)}
+                    items={subjects.map((s) => ({label: s.name, value: s.id}))}
+                />
             </InputRow>
             <ButtonRow>
-                <Button primary onPress={() => setDeckView()}>
+                <Button primary="true" onPress={handleSubmit}>
                     Start adding cards
                 </Button>
                 <Button onPress={() => navigation.goBack()}>Cancel</Button>
