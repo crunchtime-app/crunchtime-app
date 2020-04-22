@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Modal, Button} from '../../common';
 import FlashCard from './FlashCard';
-import {useGetEndpoint} from '../../../services';
+import {useApiGet} from '../../../services';
 
 const Counter = styled.Text`
     margin: 20px 0 50px 0;
@@ -17,7 +17,7 @@ const FlashCardFlowScreen = ({route}) => {
     const navigation = useNavigation();
 
     const deckId = route.params.deckId;
-    const [cards] = useGetEndpoint(`/api/decks/${deckId}/cards`);
+    const [cards] = useApiGet(`/api/decks/${deckId}/cards`);
 
     const handlePress = (isCorrect, currentCard, setCurrentCard) => {
         setCurrentCard(currentCard + 1);

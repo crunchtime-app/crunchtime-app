@@ -55,9 +55,9 @@ const DecksListScreen = ({navigation}) => {
             title="Decks"
             action={
                 <Ionicons
-                    name={'md-add-circle'}
+                    name={'md-add'}
                     size={35}
-                    color={colors.white}
+                    color={colors.action}
                     onTouchStart={() =>
                         navigation.navigate(RouteNames.ADD_NEW_DECK)
                     }

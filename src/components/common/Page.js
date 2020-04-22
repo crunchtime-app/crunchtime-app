@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 import styled from 'styled-components/native';
 import {SafeAreaView} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
@@ -14,7 +13,7 @@ const PageContainer = styled.View`
 `;
 
 const Header = styled.View`
-    background: ${colors.backgroundTop};
+    background: ${colors.white};
     height: 65px;
     position: relative;
 
@@ -23,14 +22,16 @@ const Header = styled.View`
     justify-content: center;
     align-items: center;
 
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 
     padding: 10px;
 `;
 
 const Title = styled.Text`
-    color: ${colors.white};
+    color: ${colors.body};
     opacity: 0.85;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
 `;
 

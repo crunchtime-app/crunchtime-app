@@ -3,17 +3,16 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import dayjs from 'dayjs';
 
-import RouteNames from '../../navigation/RouteNames';
 import {Modal, Button} from '../../common';
 import {DatePicker, Label, InputRow, ButtonRow} from '../../common/form';
 import RNPickerSelect from 'react-native-picker-select';
-import {useGetEndpoint} from '../../../services';
+import {useApiGet} from '../../../services';
 import axios from '../../../services';
 
 const AddTestModal = () => {
     const navigation = useNavigation();
 
-    const [subjects] = useGetEndpoint('/api/subjects');
+    const [subjects] = useApiGet('/api/subjects');
     const [subjectId, setSubjectId] = useState('');
 
     const [decks, setDecks] = useState([]);
@@ -35,10 +34,9 @@ const AddTestModal = () => {
             });
 
             console.log(res.data);
-            navigation.navigate(RouteNames.TEST_LIST_SCREEN, {
-                newTest: res.data,
-            });
+            navigation.goBack();
         } catch (e) {
+            console.log(e);
             navigation.goBack();
         }
     };

@@ -13,20 +13,16 @@ const CreateCard = ({deckId}) => {
 
     const handleSubmit = async () => {
         try {
-            const res = await axios.post(`/api/decks/${deckId}/cards`, {
+            await axios.post(`/api/decks/${deckId}/cards`, {
                 front: front,
                 back: back,
             });
-            // setDeckId(res.data.id);
-            // navigation.goBack
+            setFront('');
+            setBack('');
         } catch (e) {
             console.log(e);
-            // navigation.goBack();
+            navigation.goBack();
         }
-    };
-
-    const handleDone = () => {
-        // go back to previous page and refresh
     };
 
     return (
@@ -51,7 +47,7 @@ const CreateCard = ({deckId}) => {
                 <Button primary="true" onPress={handleSubmit}>
                     Add another
                 </Button>
-                <Button onPress={() => navigation.goBack()}>Cancel</Button>
+                <Button onPress={() => navigation.goBack()}>Done</Button>
             </ButtonRow>
         </>
     );

@@ -1,6 +1,6 @@
 const RouteNames = {
     TAB_NAV: 'TabNavigator',
-    TEST_LIST_SCREEN: 'Today',
+    TODAYS_TRAININGS: 'Today',
     COMMUNITY: 'Decks',
     BADGES: 'Badges',
     FLASHCARD_SESSION: 'Flash Card Session',

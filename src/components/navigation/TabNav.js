@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {colors} from '../../resources';
 import {
-    TestListScreen,
+    TodaysTrainingsScreen,
     DecksListScreen,
     AchievementScreen,
     AboutScreen,
@@ -28,8 +28,8 @@ const TabNav = () => {
             }}
         >
             <Tab.Screen
-                name={RouteNames.TEST_LIST_SCREEN}
-                component={TestListScreen}
+                name={RouteNames.TODAYS_TRAININGS}
+                component={TodaysTrainingsScreen}
                 options={{
                     tabBarIcon: ({color, size}) => (
                         <Ionicons

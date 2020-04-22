@@ -4,14 +4,14 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Button} from '../../common';
 import {Label, InputRow, ButtonRow, TextInput} from '../../common/form';
-import axios, {useGetEndpoint} from '../../../services';
+import axios, {useApiGet} from '../../../services';
 
 const CreateDeck = ({setDeckId}) => {
     const navigation = useNavigation();
 
     const [deckName, setDeckName] = useState('');
     const [subjectId, setSubjectId] = useState('');
-    const [subjects] = useGetEndpoint('/api/subjects');
+    const [subjects] = useApiGet('/api/subjects');
 
     const handleSubmit = async () => {
         try {

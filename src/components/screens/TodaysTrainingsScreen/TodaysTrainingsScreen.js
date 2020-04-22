@@ -1,32 +1,25 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {ScrollView} from 'react-native';
-import dayjs from 'dayjs';
 import {Ionicons} from '@expo/vector-icons';
 
 import {Page} from '../../common';
 import {colors} from '../../../resources';
 import RouteNames from '../../navigation/RouteNames';
-import axios, {useGetEndpoint} from '../../../services';
+import {useApiGet} from '../../../services';
 
 import ScheduledTestCard from './ScheduledTestCard';
 
-const UpcomingTestsScreen = ({navigation, route}) => {
-    const [tests, setTests] = useGetEndpoint('/api/tests');
-
-    useEffect(() => {
-        if (route.params?.newTest) {
-            setTests([...tests, route.params.newTest])
-        }
-    }, [route.params?.newTest]);
+const TodaysTrainingsScreen = ({navigation, route}) => {
+    const [trainings] = useApiGet('/api/trainings?day=today');
 
     return (
         <Page
-            title="Home"
+            title="Today's Sets"
             action={
                 <Ionicons
-                    name={'md-add-circle'}
+                    name={'md-add'}
                     size={35}
-                    color={colors.white}
+                    color={colors.action}
                     onTouchStart={() =>
                         navigation.navigate(RouteNames.ADD_SCHEDULED_TEST)
                     }
@@ -34,11 +27,11 @@ const UpcomingTestsScreen = ({navigation, route}) => {
             }
         >
             <ScrollView style={{width: '100%'}}>
-                {tests.map((test) => (
+                {trainings.map((training) => (
                     <ScheduledTestCard
-                        key={test.id}
+                        key={training.id}
                         navigation={navigation}
-                        test={test}
+                        test={training.test}
                     />
                 ))}
             </ScrollView>
@@ -46,4 +39,4 @@ const UpcomingTestsScreen = ({navigation, route}) => {
     );
 };
 
-export default UpcomingTestsScreen;
+export default TodaysTrainingsScreen;
