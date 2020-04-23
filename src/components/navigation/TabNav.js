@@ -1,5 +1,5 @@
 import React from 'react';
-import {Ionicons} from '@expo/vector-icons';
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {colors} from '../../resources';
@@ -32,8 +32,8 @@ const TabNav = () => {
                 component={TodaysTrainingsScreen}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <Ionicons
-                            name={'md-calendar'}
+                        <MaterialCommunityIcons
+                            name={'calendar-check'}
                             size={size}
                             color={color}
                         />
@@ -45,7 +45,7 @@ const TabNav = () => {
                 component={DecksListScreen}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <Ionicons name={'md-apps'} size={size} color={color} />
+                        <MaterialCommunityIcons name={'cards-outline'} size={size} color={color} />
                     ),
                 }}
             />
@@ -54,8 +54,8 @@ const TabNav = () => {
                 component={AchievementScreen}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <Ionicons
-                            name={'md-trophy'}
+                        <MaterialCommunityIcons
+                            name={'medal'}
                             size={size}
                             color={color}
                         />
@@ -67,8 +67,8 @@ const TabNav = () => {
                 component={AboutScreen}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <Ionicons
-                            name={'ios-information-circle'}
+                        <MaterialCommunityIcons
+                            name={'dots-horizontal'}
                             size={size}
                             color={color}
                         />

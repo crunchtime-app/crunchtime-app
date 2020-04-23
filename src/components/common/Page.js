@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 import styled from 'styled-components/native';
 import {SafeAreaView} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
+import decode from 'jwt-decode';
 
+import RouteNames from '../navigation/RouteNames';
+import axios from '../../services';
+import {TokenContext, BadgeContext} from '../../state';
 import colors from '../../resources/colors';
 
 const PageContainer = styled.View`
@@ -13,7 +18,7 @@ const PageContainer = styled.View`
 `;
 
 const Header = styled.View`
-    background: ${colors.white};
+    background: ${colors.backgroundTop};
     height: 65px;
     position: relative;
 
@@ -51,6 +56,28 @@ const Body = styled.View`
 `;
 
 const Page = ({title, children, action}) => {
+    const navigation = useNavigation();
+    let {token} = useContext(TokenContext);
+    let {badgeCount, setBadgeCount, isAchievementsEnabled} = useContext(
+        BadgeContext
+    );
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', async () => {
+            if (token && isAchievementsEnabled) {
+                const userId = decode(token).id;
+                const result = await axios.get(`/api/users/${userId}/badges`);
+                const newBadgeCount = result.data.length;
+                if (newBadgeCount != badgeCount) {
+                    setBadgeCount(newBadgeCount);
+                    navigation.navigate(RouteNames.ACHIEVEMENT_UNLOCKED);
+                }
+            }
+        });
+
+        return unsubscribe;
+    }, [navigation, badgeCount, isAchievementsEnabled]);
+
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: colors.backgroundTop}}>
             <PageContainer>

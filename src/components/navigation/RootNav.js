@@ -6,6 +6,7 @@ import {
     AddTestModal,
     AddDeckModal,
     LoginScreen,
+    AchievementUnlockedModal
 } from '../screens';
 import {colors} from '../../resources';
 import {TokenContext} from '../../state';
@@ -42,6 +43,10 @@ const RootNav = () => {
                         name={RouteNames.ADD_NEW_DECK}
                         component={AddDeckModal}
                     />
+                    <Root.Screen
+                        name={RouteNames.ACHIEVEMENT_UNLOCKED}
+                        component={AchievementUnlockedModal}
+                    />
                 </>
             ) : (
                 <>
@@ -49,19 +54,6 @@ const RootNav = () => {
                         name={RouteNames.LOGIN_SCREEN}
                         component={LoginScreen}
                     />
-                    {/* <Root.Screen name={RouteNames.TAB_NAV} component={TabNav} />
-                    <Root.Screen
-                        name={RouteNames.FLASHCARD_SESSION}
-                        component={FlashCardFlowModal}
-                    />
-                    <Root.Screen
-                        name={RouteNames.ADD_SCHEDULED_TEST}
-                        component={AddTestModal}
-                    />
-                    <Root.Screen
-                        name={RouteNames.ADD_NEW_DECK}
-                        component={AddDeckModal}
-                    /> */}
                 </>
             )}
         </Root.Navigator>

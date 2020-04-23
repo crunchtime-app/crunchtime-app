@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
-import {View} from 'react-native';
+import {View, KeyboardAvoidingView} from 'react-native';
 import styled from 'styled-components/native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {Page, Button} from '../../common';
 import {TextInput, Label, InputRow} from '../../common/form';
@@ -18,7 +19,7 @@ const AppTitle = styled.Text`
     font-size: 48px;
     color: #fff;
     font-weight: 700;
-    margin: 100px 0;
+    margin: 100px auto;
 `;
 
 const LoginScreen = () => {
@@ -47,48 +48,53 @@ const LoginScreen = () => {
 
     return (
         <Page>
-            <AppTitle>CrunchTime</AppTitle>
-            <Container>
-                <View>
-                    <InputRow>
-                        <Label light="true">Email</Label>
-                        <TextInput
-                            value={emailInput}
-                            onChangeText={(val) => setEmailInput(val)}
-                            placeholder="Enter your email"
-                        />
-                    </InputRow>
-                    <InputRow>
-                        <Label>Password</Label>
-                        <TextInput
-                            value={passwordInput}
-                            secureTextEntry={true}
-                            onChangeText={(val) => setPasswordInput(val)}
-                            placeholder="Enter your password"
-                        />
-                    </InputRow>
-                    {!isLogin && (
+            <KeyboardAwareScrollView style={{width: '100%'}}>
+                <AppTitle>CrunchTime</AppTitle>
+                <Container>
+                    <View>
                         <InputRow>
-                            <Label>Name</Label>
+                            <Label light="true">Email</Label>
                             <TextInput
-                                value={nameInput}
-                                onChangeText={(val) => setNameInput(val)}
-                                placeholder="Enter your name"
+                                value={emailInput}
+                                onChangeText={(val) => setEmailInput(val)}
+                                placeholder="Enter your email"
                             />
                         </InputRow>
-                    )}
-                </View>
-                <View>
-                    <InputRow>
-                        <Button primary="true" onPress={() => handleButton()}>
-                            {isLogin ? 'LOG IN' : 'SIGN UP'}
-                        </Button>
-                        <Button onPress={() => setLogin(!isLogin)}>
-                            {!isLogin ? 'LOG IN' : 'SIGN UP'}
-                        </Button>
-                    </InputRow>
-                </View>
-            </Container>
+                        <InputRow>
+                            <Label>Password</Label>
+                            <TextInput
+                                value={passwordInput}
+                                secureTextEntry={true}
+                                onChangeText={(val) => setPasswordInput(val)}
+                                placeholder="Enter your password"
+                            />
+                        </InputRow>
+                        {!isLogin && (
+                            <InputRow>
+                                <Label>Name</Label>
+                                <TextInput
+                                    value={nameInput}
+                                    onChangeText={(val) => setNameInput(val)}
+                                    placeholder="Enter your name"
+                                />
+                            </InputRow>
+                        )}
+                    </View>
+                    <View>
+                        <InputRow>
+                            <Button
+                                primary="true"
+                                onPress={() => handleButton()}
+                            >
+                                {isLogin ? 'LOG IN' : 'SIGN UP'}
+                            </Button>
+                            <Button onPress={() => setLogin(!isLogin)}>
+                                {!isLogin ? 'LOG IN' : 'SIGN UP'}
+                            </Button>
+                        </InputRow>
+                    </View>
+                </Container>
+            </KeyboardAwareScrollView>
         </Page>
     );
 };

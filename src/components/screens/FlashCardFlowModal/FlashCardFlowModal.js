@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Modal, Button} from '../../common';
 import FlashCard from './FlashCard';
-import {useApiGet} from '../../../services';
+import axios, {useApiGet} from '../../../services';
 
 const Counter = styled.Text`
     margin: 20px 0 50px 0;
@@ -14,17 +14,23 @@ const Counter = styled.Text`
 
 const FlashCardFlowScreen = ({route}) => {
     const [currentCard, setCurrentCard] = useState(0);
+    const [isFlipped, setFlipped] = useState(false);
     const navigation = useNavigation();
 
     const deckId = route.params.deckId;
+    const trainingId = route.params.trainingId;
+
     const [cards] = useApiGet(`/api/decks/${deckId}/cards`);
 
-    const handlePress = (isCorrect, currentCard, setCurrentCard) => {
+    const handlePress = async (currentCard, setCurrentCard) => {
+        //isCorrect
+        setFlipped(false);
         setCurrentCard(currentCard + 1);
 
         if (cards.length - 1 === currentCard) {
-            console.log(cards.length);
-            console.log(currentCard);
+            await axios.patch(`/api/trainings/${trainingId}/status`, {
+                status: 'done',
+            });
             navigation.popToTop();
         }
     };
@@ -34,18 +40,22 @@ const FlashCardFlowScreen = ({route}) => {
             {cards[currentCard] && (
                 <Modal>
                     <Counter>{currentCard + 1 + ' of ' + cards.length}</Counter>
-                    <FlashCard card={cards[currentCard]} />
+                    <FlashCard
+                        card={cards[currentCard]}
+                        isFlipped={isFlipped}
+                        setFlipped={setFlipped}
+                    />
                     <Button
                         primary="true"
                         text="Mark Correct"
                         onPress={() =>
-                            handlePress(true, currentCard, setCurrentCard)
+                            handlePress(currentCard, setCurrentCard, true)
                         }
                     />
                     <Button
                         text="Mark Incorrect"
                         onPress={() =>
-                            handlePress(false, currentCard, setCurrentCard)
+                            handlePress(currentCard, setCurrentCard, false)
                         }
                     />
                 </Modal>

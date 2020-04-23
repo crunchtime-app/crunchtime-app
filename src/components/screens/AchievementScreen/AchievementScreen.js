@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components/native';
 import {ScrollView} from 'react-native';
 import decode from 'jwt-decode';
@@ -23,6 +23,7 @@ const Badge = styled.View`
 
 const Description = styled.Text`
     font-size: 20px;
+    color: ${colors.body};
 `;
 
 const AchievementScreen = () => {

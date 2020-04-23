@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-// import {Picker} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import dayjs from 'dayjs';
 
@@ -33,7 +32,6 @@ const AddTestModal = () => {
                 date: date,
             });
 
-            console.log(res.data);
             navigation.goBack();
         } catch (e) {
             console.log(e);

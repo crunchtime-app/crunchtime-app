@@ -6,3 +6,4 @@ export {AddTestModal} from './AddTestModal';
 export {AddDeckModal} from './AddDeckModal';
 export {AboutScreen} from './AboutScreen';
 export {LoginScreen} from './LoginScreen';
+export {AchievementUnlockedModal} from './AchievementUnlockedModal';

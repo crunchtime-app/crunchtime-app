@@ -6,7 +6,7 @@ import {Ionicons} from '@expo/vector-icons';
 import RouteNames from '../../navigation/RouteNames';
 import {Page, BaseCard} from '../../common';
 import {colors} from '../../../resources';
-import axios from '../../../services';
+import axios, {useApiGet} from '../../../services';
 
 const DeckCard = styled(BaseCard)`
     justify-content: center;
@@ -29,26 +29,8 @@ const SubjectTitle = styled.Text`
 `;
 
 const DecksListScreen = ({navigation}) => {
-    const [decks, setDecks] = useState([]);
-    const [subjects, setSubjects] = useState([]);
-
-    useEffect(() => {
-        const fetch = async () => {
-            const result = await axios('/api/decks');
-            setDecks(result.data);
-        };
-
-        fetch();
-    }, []);
-
-    useEffect(() => {
-        const fetch = async () => {
-            const result = await axios('/api/subjects');
-            setSubjects(result.data);
-        };
-
-        fetch();
-    }, []);
+    const [decks] = useApiGet('/api/decks');
+    const [subjects] = useApiGet('/api/subjects');
 
     return (
         <Page

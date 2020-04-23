@@ -25,11 +25,12 @@ const TestSubtitle = styled.Text`
     color: ${colors.body};
 `;
 
-const ScheduledTestCard = ({test, navigation}) => {
+const ScheduledTestCard = ({training, navigation}) => {
+    const test = training.test;
     let dateString = dayjs().to(test.date);
 
     return (
-        <Card onTouchStart={() => navigation.navigate('Flash Card Session', {deckId: test.deck.id, testId: test.id})} key={test.id}>
+        <Card onTouchStart={() => navigation.navigate('Flash Card Session', {deckId: test.deck.id, trainingId: training.id})} key={test.id}>
             <View>
                 <TestName>{test.deck.name}</TestName>
                 <TestSubtitle>Test {dateString}</TestSubtitle>

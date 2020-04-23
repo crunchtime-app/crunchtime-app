@@ -29,8 +29,7 @@ const FlashCardText = styled.Text`
     color: ${colors.body};
 `;
 
-const FlashCard = ({card}) => {
-    const [isFlipped, setFlipped] = useState(false);
+const FlashCard = ({card, isFlipped, setFlipped}) => {
 
     return (
         <Container>
