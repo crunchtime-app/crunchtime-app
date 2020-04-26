@@ -30,13 +30,13 @@ This script will create a local Expo webserver, which can be accessed at https:/
 
 From the Expo portal page at https://localhost:10092/ you can run the application a few different ways:
 
-#### iOS - Preferred method
+#### Physical iOS device - Preferred method
 
 1. Install the `Expo` application.
 2. Use your phone's camera app to scan the QR Code on the Expo start page.
 3. The app should then start locally, within the Expo app.
 
-#### Android
+#### Physical Android device
 
 Running local version:
 1. Install the `Expo` application.
@@ -59,3 +59,8 @@ Note: This application was built and tested using mainly the iOS and Web version
 3. The app will open in a new tab at https://localhost:10096/
 
 Note: The date-picker component used on the Create Test modal is designed only for mobile experiences, and will default to the current day when using the application on web.
+
+
+#### Device simulators
+
+1. Using the Expo webserver, there are options to launch the app using iOS and Android simulators. Note that these options have not been tested, but may prove to be more reliable if a physical device is not available. 
