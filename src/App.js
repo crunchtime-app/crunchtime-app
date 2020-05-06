@@ -5,7 +5,7 @@ import {AsyncStorage} from 'react-native';
 import decode from 'jwt-decode';
 
 import {TokenContext, BadgeContext} from './state';
-import {RootNav} from './components/navigation';
+import {RootNav} from './navigation';
 import axios from './services';
 
 const App = () => {
