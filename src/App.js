@@ -5,7 +5,7 @@ import {AsyncStorage} from 'react-native';
 import decode from 'jwt-decode';
 
 import {TokenContext, BadgeContext} from './state';
-import {RootNav} from './navigation';
+import {Drawer} from './navigation';
 import axios from './services';
 
 const App = () => {
@@ -48,7 +48,7 @@ const App = () => {
         <NavigationContainer>
             <TokenContext.Provider value={{token, clearToken, storeToken}}>
                 <BadgeContext.Provider value={{badgeCount, setBadgeCount, isAchievementsEnabled}}>
-                    <RootNav />
+                    <Drawer />
                 </BadgeContext.Provider>
             </TokenContext.Provider>
         </NavigationContainer>

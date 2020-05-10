@@ -34,8 +34,6 @@ const TodaysTrainingsScreen = ({navigation}) => {
                     color={colors.action}
                     onTouchStart={
                         () => navigation.navigate(RouteNames.ADD_SCHEDULED_TEST)
-                        // navigation.navigate(RouteNames.ACHIEVEMENT_UNLOCKED)
-                        // TODO REVERT THIS
                     }
                 />
             }
@@ -46,7 +44,6 @@ const TodaysTrainingsScreen = ({navigation}) => {
                         <ScheduledTestCard
                             key={training.id}
                             navigation={navigation}
-                            // test={training.test}
                             training={training}
                         />
                     ))}

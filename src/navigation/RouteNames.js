@@ -1,4 +1,6 @@
 const RouteNames = {
+    DRAWER_NAV: 'DRAWER_NAV',
+    STACK_NAV: 'Home',
     TAB_NAV: 'TabNavigator',
     TODAYS_TRAININGS: 'Today',
     COMMUNITY: 'Decks',

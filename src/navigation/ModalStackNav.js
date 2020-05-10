@@ -14,14 +14,14 @@ import {TokenContext} from '../state';
 import TabNav from './TabNav';
 import RouteNames from './RouteNames';
 
-const Root = createStackNavigator();
+const ModalNav = createStackNavigator();
 
-const RootNav = () => {
+const ModalStackNav = () => {
     const {token} = React.useContext(TokenContext);
     const isSignedIn = !!token;
 
     return (
-        <Root.Navigator
+        <ModalNav.Navigator
             headerMode="none"
             mode="modal"
             screenOptions={{
@@ -30,34 +30,34 @@ const RootNav = () => {
         >
             {isSignedIn ? (
                 <>
-                    <Root.Screen name={RouteNames.TAB_NAV} component={TabNav} />
-                    <Root.Screen
+                    <ModalNav.Screen name={RouteNames.TAB_NAV} component={TabNav} />
+                    <ModalNav.Screen
                         name={RouteNames.FLASHCARD_SESSION}
                         component={FlashCardFlowModal}
                     />
-                    <Root.Screen
+                    <ModalNav.Screen
                         name={RouteNames.ADD_SCHEDULED_TEST}
                         component={AddTestModal}
                     />
-                    <Root.Screen
+                    <ModalNav.Screen
                         name={RouteNames.ADD_NEW_DECK}
                         component={AddDeckModal}
                     />
-                    <Root.Screen
+                    <ModalNav.Screen
                         name={RouteNames.ACHIEVEMENT_UNLOCKED}
                         component={AchievementUnlockedModal}
                     />
                 </>
             ) : (
                 <>
-                    <Root.Screen
+                    <ModalNav.Screen
                         name={RouteNames.LOGIN_SCREEN}
                         component={LoginScreen}
                     />
                 </>
             )}
-        </Root.Navigator>
+        </ModalNav.Navigator>
     );
 };
 
-export default RootNav;
+export default ModalStackNav;

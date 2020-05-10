@@ -4,6 +4,7 @@ import {SafeAreaView} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
 import decode from 'jwt-decode';
+import {FontAwesome} from '@expo/vector-icons';
 
 import RouteNames from '../navigation/RouteNames';
 import axios from '../services';
@@ -55,6 +56,13 @@ const Body = styled.View`
     flex-grow: 1;
 `;
 
+const ProfileIcon = styled.View`
+    opacity: 0.85;
+    position: absolute;
+    left: 15px;
+    padding: 5px;
+`;
+
 const Page = ({title, children, action}) => {
     const navigation = useNavigation();
     let {token} = useContext(TokenContext);
@@ -82,15 +90,20 @@ const Page = ({title, children, action}) => {
         <SafeAreaView style={{flex: 1, backgroundColor: colors.backgroundTop}}>
             <PageContainer>
                 <Header>
+                    <ProfileIcon>
+                        <FontAwesome
+                            name="user-circle"
+                            size={28}
+                            color={colors.action}
+                            onTouchStart={() => navigation.openDrawer()}
+                        />
+                    </ProfileIcon>
                     <Title>{title}</Title>
                     <Action>{action}</Action>
                 </Header>
                 <LinearGradient
                     style={{flex: 1}}
                     colors={[colors.backgroundTop, colors.backgroundBottom]}
-                    // start={[0.0, 0.0]}
-                    // start={[1.0, 0.0]}
-                    // locations={[0.45, 1.0]}
                 >
                     <Body>{children}</Body>
                 </LinearGradient>
