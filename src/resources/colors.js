@@ -13,20 +13,28 @@ const hues = {
     orange: '#FCB63C',
     green: '#1D7146',
     orangeBright: '#FC5B31',
-    warmDarkGrey: '#3d3933'
+    warmDarkGrey: '#3d3933',
+
+    // happy hues theme
+    darkblue: '#232946',
+    darkerblue: '#121629',
+    lightblue: '#b8c1ec',
+    pink: '#eebbc3',
+    darkerpink: '#d4939d',
+    offwhite: '#fffffe',
 };
 
 /* Colors for specific things,
 so they can be changed in one place */
 const palette = {
-    backgroundTop: hues.yellow,
-    backgroundBottom: hues.orange,
+    backgroundTop: hues.darkblue,
+    backgroundBottom: hues.darkblue,
     body: hues.warmDarkGrey,
-    action: hues.orangeBright,
+    action: hues.pink,
     modalShadow: hues.darkerBlue + 'aa',
     inputBackground: hues.white,
     inactive: hues.grey,
-    tabIcons: hues.orangeBright,
+    active: hues.darkerblue,
 };
 
 export default {...hues, ...palette};

@@ -2,16 +2,20 @@ import React from 'react';
 import {registerRootComponent} from 'expo';
 import {NavigationContainer} from '@react-navigation/native';
 import {AsyncStorage} from 'react-native';
+import {ThemeProvider} from 'styled-components';
 import decode from 'jwt-decode';
 
 import {TokenContext, BadgeContext} from './state';
 import {Drawer} from './navigation';
+import {theme} from './resources';
 import axios from './services';
 
 const App = () => {
     const [token, setToken] = React.useState('');
     const [badgeCount, setBadgeCount] = React.useState(0);
-    const [isAchievementsEnabled, setAchievementsEnabled] = React.useState(false);
+    const [isAchievementsEnabled, setAchievementsEnabled] = React.useState(
+        false
+    );
 
     React.useEffect(() => {
         const retrieveToken = async () => {
@@ -33,7 +37,7 @@ const App = () => {
         retrieveToken();
     }, []);
 
-    const storeToken = async (_token) => {
+    const storeToken = async _token => {
         await AsyncStorage.setItem('@token', _token);
         setToken(_token);
         axios.defaults.headers.common['Authorization'] = _token;
@@ -47,8 +51,12 @@ const App = () => {
     return (
         <NavigationContainer>
             <TokenContext.Provider value={{token, clearToken, storeToken}}>
-                <BadgeContext.Provider value={{badgeCount, setBadgeCount, isAchievementsEnabled}}>
-                    <Drawer />
+                <BadgeContext.Provider
+                    value={{badgeCount, setBadgeCount, isAchievementsEnabled}}
+                >
+                    <ThemeProvider theme={theme}>
+                        <Drawer />
+                    </ThemeProvider>
                 </BadgeContext.Provider>
             </TokenContext.Provider>
         </NavigationContainer>

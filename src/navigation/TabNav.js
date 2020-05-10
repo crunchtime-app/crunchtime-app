@@ -17,14 +17,8 @@ const TabNav = () => {
     return (
         <Tab.Navigator
             tabBarOptions={{
-                activeTintColor: colors.tabIcons,
+                activeTintColor: colors.active,
                 inactiveTintColor: colors.inactive,
-                style: {
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
-                    overflow: 'hidden',
-                    position: 'absolute',
-                },
             }}
         >
             <Tab.Screen
