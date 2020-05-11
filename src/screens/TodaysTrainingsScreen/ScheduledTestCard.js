@@ -6,14 +6,10 @@ import RelativeTime from 'dayjs/plugin/relativeTime';
 import {EvilIcons} from '@expo/vector-icons';
 
 import {BaseCard} from '../../common';
-import {colors} from '../../resources'
+import {colors} from '../../resources';
 
 dayjs.extend(RelativeTime);
 
-const Card = styled(BaseCard)`
-    justify-content: space-between;
-    padding: 10px 20px;
-`;
 
 const TestName = styled.Text`
     font-size: 30px;
@@ -30,13 +26,24 @@ const ScheduledTestCard = ({training, navigation}) => {
     let dateString = dayjs().to(test.date);
 
     return (
-        <Card onTouchStart={() => navigation.navigate('Flash Card Session', {deckId: test.deck.id, trainingId: training.id})} key={test.id}>
+        <BaseCard
+            onTouchStart={() =>
+                navigation.navigate('Flash Card Session', {
+                    deckId: test.deck.id,
+                    trainingId: training.id
+                })
+            }
+            key={test.id}
+            px={3}
+            py={2}
+            justifyContent="space-between"
+        >
             <View>
                 <TestName>{test.deck.name}</TestName>
                 <TestSubtitle>Test {dateString}</TestSubtitle>
             </View>
             <EvilIcons name={'chevron-right'} size={50} color={colors.action} />
-        </Card>
+        </BaseCard>
     );
 };
 

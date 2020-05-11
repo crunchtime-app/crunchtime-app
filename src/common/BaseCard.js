@@ -1,18 +1,24 @@
 import styled from 'styled-components/native';
+import {color, space, flexbox} from 'styled-system';
 
-import {colors} from '../resources';
+// import {colors} from '../resources';
 
+    // /* background: ${colors.white}; */
 const BaseCard = styled.View`
-    background: ${colors.white};
     width: 100%;
     min-height: 80px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    border-radius: 15px;
-    margin: 5px 0;
+    border-radius: 20px;
+    ${color} 
+    ${space}
+    ${flexbox}
 `;
+
+BaseCard.defaultProps = {
+    my: 1,
+    mx: 0,
+    bg: 'offwhite',
+    alignItems: 'center',
+    flexDirection: 'row'
+};
 
 export default BaseCard;

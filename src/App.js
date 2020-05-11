@@ -2,7 +2,7 @@ import React from 'react';
 import {registerRootComponent} from 'expo';
 import {NavigationContainer} from '@react-navigation/native';
 import {AsyncStorage} from 'react-native';
-import {ThemeProvider} from 'styled-components';
+import {ThemeProvider} from 'styled-components/native';
 import decode from 'jwt-decode';
 
 import {TokenContext, BadgeContext} from './state';
@@ -49,17 +49,21 @@ const App = () => {
     };
 
     return (
-        <NavigationContainer>
-            <TokenContext.Provider value={{token, clearToken, storeToken}}>
-                <BadgeContext.Provider
-                    value={{badgeCount, setBadgeCount, isAchievementsEnabled}}
-                >
-                    <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+            <NavigationContainer>
+                <TokenContext.Provider value={{token, clearToken, storeToken}}>
+                    <BadgeContext.Provider
+                        value={{
+                            badgeCount,
+                            setBadgeCount,
+                            isAchievementsEnabled
+                        }}
+                    >
                         <Drawer />
-                    </ThemeProvider>
-                </BadgeContext.Provider>
-            </TokenContext.Provider>
-        </NavigationContainer>
+                    </BadgeContext.Provider>
+                </TokenContext.Provider>
+            </NavigationContainer>
+        </ThemeProvider>
     );
 };
 
