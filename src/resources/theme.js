@@ -1,7 +1,9 @@
 import colors from './colors';
 
 const dimensions = {
-    space: [0, 4, 8, 16, 32, 64, 128, 256, 512]
+    space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+    fontSizes: [12, 14, 16, 20, 24, 32],
+    fontWeights: [300, 500, 700]
 };
 
 
