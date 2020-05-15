@@ -11,6 +11,8 @@ import axios from '../services';
 import {TokenContext, BadgeContext} from '../state';
 import colors from '../resources/colors';
 
+import TitleText from './TitleText';
+
 const PageContainer = styled.View`
     justify-content: space-between;
     display: flex;
@@ -34,12 +36,12 @@ const Header = styled.View`
     padding: 10px;
 `;
 
-const Title = styled.Text`
-    color: ${colors.body};
-    opacity: 0.85;
-    font-size: 24px;
-    font-weight: 500;
-`;
+// const Title = styled.Text`
+//     color: ${colors.body};
+//     opacity: 0.85;
+//     font-size: 24px;
+//     font-weight: 500;
+// `;
 
 const Action = styled.Text`
     opacity: 0.85;
@@ -98,7 +100,7 @@ const Page = ({title, children, action}) => {
                             onTouchStart={() => navigation.openDrawer()}
                         />
                     </ProfileIcon>
-                    <Title>{title}</Title>
+                    <TitleText>{title}</TitleText>
                     <Action>{action}</Action>
                 </Header>
                 <LinearGradient

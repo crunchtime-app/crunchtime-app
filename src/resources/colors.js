@@ -29,6 +29,7 @@ so they can be changed in one place */
 const palette = {
     backgroundTop: hues.darkblue,
     backgroundBottom: hues.darkblue,
+    title: hues.offwhite,
     body: hues.warmDarkGrey,
     action: hues.pink,
     primary: hues.pink,
