@@ -48,6 +48,8 @@ const App = () => {
         setToken('');
     };
 
+    console.log('$$$$$$$$$', theme);
+
     return (
         <ThemeProvider theme={theme}>
             <NavigationContainer>

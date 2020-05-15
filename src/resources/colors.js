@@ -31,10 +31,12 @@ const palette = {
     backgroundBottom: hues.darkblue,
     body: hues.warmDarkGrey,
     action: hues.pink,
+    primary: hues.pink,
+    secondary: hues.lightblue,
     modalShadow: hues.darkerBlue + 'aa',
     inputBackground: hues.white,
     inactive: hues.grey,
-    active: hues.darkerblue,
+    active: hues.darkerpink,
 };
 
 export default {...hues, ...palette};

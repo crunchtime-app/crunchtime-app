@@ -8,7 +8,7 @@ const BaseCard = styled.View`
     width: 100%;
     min-height: 80px;
     border-radius: 20px;
-    ${color} 
+    ${color}
     ${space}
     ${flexbox}
 `;

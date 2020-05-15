@@ -1,8 +1,9 @@
-import React from 'react';
-import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import React, {useContext} from 'react';
+import {ThemeContext} from 'styled-components/native';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {colors} from '../resources';
+// import {colors} from '../resources';
 import {
     TodaysTrainingsScreen,
     DecksListScreen,
@@ -14,11 +15,23 @@ import RouteNames from './RouteNames';
 const Tab = createBottomTabNavigator();
 
 const TabNav = () => {
+    const theme = useContext(ThemeContext);
     return (
         <Tab.Navigator
             tabBarOptions={{
-                activeTintColor: colors.active,
-                inactiveTintColor: colors.inactive,
+                activeTintColor: theme.colors.active,
+                inactiveTintColor: theme.colors.inactive,
+                activeBackgroundColor: theme.colors.backgroundBottom,
+                inactiveBackgroundColor: theme.colors.backgroundBottom,
+                style: {
+                    borderTopWidth: 0,
+                    backgroundColor: theme.colors.backgroundBottom
+                },
+                tabStyle: {
+                    borderWidth: 0,
+                    backgroundColor: theme.colors.backgroundBottom,
+                    paddingTop: '4px'
+                }
             }}
         >
             <Tab.Screen
@@ -39,7 +52,11 @@ const TabNav = () => {
                 component={DecksListScreen}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <MaterialCommunityIcons name={'cards-outline'} size={size} color={color} />
+                        <MaterialCommunityIcons
+                            name={'cards-outline'}
+                            size={size}
+                            color={color}
+                        />
                     ),
                 }}
             />
